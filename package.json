@@ -1,0 +1,29 @@
+{
+  "name": "github-job-compound-component",
+  "version": "1.0.0",
+  "description": "Github-job-using-compound-components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vahona/github-job-compound-component.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vahona/github-job-compound-component/issues"
+  },
+  "homepage": "https://github.com/vahona/github-job-compound-component#readme",
+  "dependencies": {
+    "styled-components": "^5.2.1",
+    "dotenv": "^8.2.0",
+    "fuse.js": "^5.2.3",
+    "normalize.css": "8.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-is": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
