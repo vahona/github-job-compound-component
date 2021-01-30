@@ -36469,14 +36469,14 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Button = exports.Form = exports.Input = exports.Container = void 0;
+exports.Background = exports.Button = exports.Input = exports.Container = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  padding: 3rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n \n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -36486,7 +36486,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 1rem;\n  background-color: blue;\n  color: white;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -36496,7 +36496,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  padding: 3rem;\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 1rem;\n  width: 80%;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -36525,13 +36525,13 @@ var Input = _styledComponents.default.input(_templateObject2());
 
 exports.Input = Input;
 
-var Form = _styledComponents.default.form(_templateObject3());
-
-exports.Form = Form;
-
-var Button = _styledComponents.default.button(_templateObject4());
+var Button = _styledComponents.default.button(_templateObject3());
 
 exports.Button = Button;
+
+var Background = _styledComponents.default.img(_templateObject4());
+
+exports.Background = Background;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/header/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -36557,13 +36557,103 @@ function Header(_ref) {
   return /*#__PURE__*/_react.default.createElement(_header.Container, restProps, children);
 }
 
-Header.Form = function HeaderForm(_ref2) {
+Header.Background = function HeaderBackground(_ref2) {
+  var children = _ref2.children,
+      restProps = _ref2.restProps;
+
+  /*#__PURE__*/
+  _react.default.createElement(_header.Background, restProps, " ", children, " ");
+};
+
+Header.Input = function HeaderInput(_ref3) {
+  var children = _ref3.children,
+      restProps = _objectWithoutProperties(_ref3, ["children"]);
+
+  /*#__PURE__*/
+  _react.default.createElement(_header.Input, restProps, " ", children, " ");
+};
+
+Header.Button = function FormButton(_ref4) {
+  var children = _ref4.children,
+      restProps = _objectWithoutProperties(_ref4, ["children"]);
+
+  /*#__PURE__*/
+  _react.default.createElement(_header.Button, restProps, " ", children, " ");
+};
+},{"react":"node_modules/react/index.js","./styles/header":"src/components/header/styles/header.js"}],"src/components/form/styles/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Input = exports.Container = void 0;
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  zoom: 2\n "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n   margin: 2rem\n "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Container = _styledComponents.default.div(_templateObject());
+
+exports.Container = Container;
+
+var Input = _styledComponents.default.input(_templateObject2());
+
+exports.Input = Input;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/form/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Form;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _form = require("./styles/form");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function Form(_ref) {
+  var children = _ref.children,
+      restProps = _objectWithoutProperties(_ref, ["children"]);
+
+  return /*#__PURE__*/_react.default.createElement(_form.Container, restProps, children);
+}
+
+Form.Input = function FormInput(_ref2) {
   var children = _ref2.children,
       restProps = _objectWithoutProperties(_ref2, ["children"]);
 
-  return /*#__PURE__*/_react.default.createElement(_header.Form, restProps, " ", children, /*#__PURE__*/_react.default.createElement(_header.Input, restProps), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Serach"));
+  /*#__PURE__*/
+  _react.default.createElement(_form.Input, restProps, " ", children, " ");
 };
-},{"react":"node_modules/react/index.js","./styles/header":"src/components/header/styles/header.js"}],"src/components/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36575,11 +36665,19 @@ Object.defineProperty(exports, "Header", {
     return _header.default;
   }
 });
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function () {
+    return _form.default;
+  }
+});
 
 var _header = _interopRequireDefault(require("./header"));
 
+var _form = _interopRequireDefault(require("./form"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./header":"src/components/header/index.js"}],"src/containers/header.js":[function(require,module,exports) {
+},{"./header":"src/components/header/index.js","./form":"src/components/form/index.js"}],"src/containers/header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36591,12 +36689,47 @@ var _react = _interopRequireDefault(require("react"));
 
 var _components = require("../components");
 
+var _header = require("../components/header/styles/header");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function HeaderContainer() {
-  return /*#__PURE__*/_react.default.createElement(_components.Header, null, /*#__PURE__*/_react.default.createElement("div", null, " Me "));
+  return /*#__PURE__*/_react.default.createElement(_components.Header, null, /*#__PURE__*/_react.default.createElement(_header.Input, {
+    placeholder: "Title, companies, expertise or benefits"
+  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search"));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js"}],"src/pages/home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js"}],"src/containers/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = FormContainer;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _components = require("../components");
+
+var _form = require("../components/form/styles/form");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormContainer() {
+  return /*#__PURE__*/_react.default.createElement(_components.Form, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Location")), /*#__PURE__*/_react.default.createElement(_form.Input, {
+    placeholder: "City, state, zip code, or "
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })));
+}
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/pages/home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36608,12 +36741,14 @@ var _react = _interopRequireDefault(require("react"));
 
 var _header = _interopRequireDefault(require("../containers/header"));
 
+var _form = _interopRequireDefault(require("../containers/form"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Home() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null));
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement(_form.default, null));
 }
-},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js"}],"src/constants/routes.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js"}],"src/constants/routes.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36650,7 +36785,31 @@ function App() {
     exact: true
   }, /*#__PURE__*/_react.default.createElement(_home.default, null))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/home":"src/pages/home.js","./constants/routes":"src/constants/routes.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/home":"src/pages/home.js","./constants/routes":"src/constants/routes.js"}],"src/global-style.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GlobalStyles = void 0;
+
+var _styledComponents = require("styled-components");
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    html, body {\n        font-family: 'Helvetica Neue', Helvetica, sans-serif;\n        -webkit-font-smoothing: antialiased;\n        -moz-osx-font-smoothing: antialiased;\n        background-color: rgb(230,230,250);\n        font-size: 16px;\n        margin: 0;\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var GlobalStyles = (0, _styledComponents.createGlobalStyle)(_templateObject());
+exports.GlobalStyles = GlobalStyles;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -36659,10 +36818,12 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _app = require("./app");
 
+var _globalStyle = require("./global-style");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_app.App, null)), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./app":"src/app.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_globalStyle.GlobalStyles, null), /*#__PURE__*/_react.default.createElement(_app.App, null)), document.getElementById("root"));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./app":"src/app.js","./global-style":"src/global-style.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36690,7 +36851,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58835" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52356" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

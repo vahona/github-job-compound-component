@@ -7,14 +7,19 @@ import styled from "styled-components";
 export const Container = styled.div``
 
 export const Input = styled.input`
-  padding: 3rem;
+  padding: 1rem;
+  width: 80%;
 `
-
-export const Form = styled.form`
-`;
 
 
 export const Button = styled.button`
-  padding: 3rem;
+  padding: 1rem;
+  background-color: blue;
+  color: white;
 `;
+
+
+export const Background = styled.img`
+ 
+`
 
