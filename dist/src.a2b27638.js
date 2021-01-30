@@ -36506,7 +36506,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral([""]);
+  var data = _taggedTemplateLiteral(["\n \n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36653,7 +36653,9 @@ Form.Input = function FormInput(_ref2) {
   /*#__PURE__*/
   _react.default.createElement(_form.Input, restProps, " ", children, " ");
 };
-},{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/main/index.js":[function(require,module,exports) {
+
+},{}],"src/components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36671,13 +36673,21 @@ Object.defineProperty(exports, "Form", {
     return _form.default;
   }
 });
+Object.defineProperty(exports, "Main", {
+  enumerable: true,
+  get: function () {
+    return _main.default;
+  }
+});
 
 var _header = _interopRequireDefault(require("./header"));
 
 var _form = _interopRequireDefault(require("./form"));
 
+var _main = _interopRequireDefault(require("./main"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./header":"src/components/header/index.js","./form":"src/components/form/index.js"}],"src/containers/header.js":[function(require,module,exports) {
+},{"./header":"src/components/header/index.js","./form":"src/components/form/index.js","./main":"src/components/main/index.js"}],"src/containers/header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36851,7 +36861,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52356" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62213" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
