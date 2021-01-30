@@ -1,11 +1,11 @@
 import React from 'react'
 
-import HeaderComponent from '../components/header'
+import HeaderContainer from '../containers/header'
 
 export default function Home() {
     return (
         <>
-         <HeaderComponent></HeaderComponent>
+         <HeaderContainer></HeaderContainer>
         </>
     )
 }

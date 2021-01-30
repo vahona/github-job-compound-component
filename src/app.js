@@ -6,7 +6,7 @@ import Home from './pages/home'
 export function App() {
     <Router>
         <Switch>
-            <Route path="/">
+            <Route path="/" exact>
                 <Home/>
             </Route>
         </Switch>
