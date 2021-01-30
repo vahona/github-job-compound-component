@@ -4,8 +4,9 @@ import {Header} from '../components'
 
 export default function HeaderContainer() {
     return (
-
-        <Header> Me </Header>
-
-    )
+      <Header>
+        <div> Me </div>
+      </Header>
+    );
 }
+
