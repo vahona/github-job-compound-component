@@ -31,9 +31,30 @@ export default function MainJob() {
     <Article {...restProps}>{children}</Article>;
   };
 
+
+   const someJobs = jobs.map((job) => {
+     return (
+       <div to={`/Jobdescription/${job.id}`} key={job.id}>
+         <div>
+           <img src={job.company_logo} />
+           <div>
+             <p>{job.company}</p>
+             <p>{job.title}</p>
+             <button>{job.type}</button>
+           </div>
+
+           <div>
+             <p>{job.location}</p>
+             <div>{Date.now()}</div>
+           </div>
+         </div>
+       </div>
+     );
+   });
+
   return (
     <>
-      <div>mmmmmm</div>
+      {someJobs}
     </>
   );
 }

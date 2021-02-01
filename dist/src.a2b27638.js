@@ -35507,31 +35507,25 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function v() {
   return (v = Object.assign || function (e) {
     for (var t = 1; t < arguments.length; t++) {
       var n = arguments[t];
 
-      for (var r in n) {
-        Object.prototype.hasOwnProperty.call(n, r) && (e[r] = n[r]);
-      }
+      for (var r in n) Object.prototype.hasOwnProperty.call(n, r) && (e[r] = n[r]);
     }
 
     return e;
   }).apply(this, arguments);
 }
 
-var g = function g(e, t) {
-  for (var n = [e[0]], r = 0, o = t.length; r < o; r += 1) {
-    n.push(t[r], e[r + 1]);
-  }
+var g = function (e, t) {
+  for (var n = [e[0]], r = 0, o = t.length; r < o; r += 1) n.push(t[r], e[r + 1]);
 
   return n;
 },
-    S = function S(t) {
-  return null !== t && "object" == _typeof(t) && "[object Object]" === (t.toString ? t.toString() : Object.prototype.toString.call(t)) && !(0, _reactIs.typeOf)(t);
+    S = function (t) {
+  return null !== t && "object" == typeof t && "[object Object]" === (t.toString ? t.toString() : Object.prototype.toString.call(t)) && !(0, _reactIs.typeOf)(t);
 },
     w = Object.freeze([]),
     E = Object.freeze({});
@@ -35575,9 +35569,7 @@ var A = "undefined" != typeof process && (undefined || undefined) || "data-style
 exports.version = C;
 
 function D() {
-  for (var e = arguments.length <= 0 ? void 0 : arguments[0], t = [], n = 1, r = arguments.length; n < r; n += 1) {
-    t.push(n < 0 || arguments.length <= n ? void 0 : arguments[n]);
-  }
+  for (var e = arguments.length <= 0 ? void 0 : arguments[0], t = [], n = 1, r = arguments.length; n < r; n += 1) t.push(n < 0 || arguments.length <= n ? void 0 : arguments[n]);
 
   return t.forEach(function (t) {
     e = e.replace(/%[a-z]/, t);
@@ -35585,9 +35577,7 @@ function D() {
 }
 
 function j(e) {
-  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) {
-    n[r - 1] = arguments[r];
-  }
+  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) n[r - 1] = arguments[r];
 
   throw "production" === "development" ? new Error("An error occurred. See https://git.io/JUIaE#" + e + " for more information." + (n.length > 0 ? " Args: " + n.join(", ") : "")) : new Error(D.apply(void 0, [R[e]].concat(n)).trim());
 }
@@ -35599,27 +35589,19 @@ var T = function () {
 
   var t = e.prototype;
   return t.indexOfGroup = function (e) {
-    for (var t = 0, n = 0; n < e; n++) {
-      t += this.groupSizes[n];
-    }
+    for (var t = 0, n = 0; n < e; n++) t += this.groupSizes[n];
 
     return t;
   }, t.insertRules = function (e, t) {
     if (e >= this.groupSizes.length) {
-      for (var n = this.groupSizes, r = n.length, o = r; e >= o;) {
-        (o <<= 1) < 0 && j(16, "" + e);
-      }
+      for (var n = this.groupSizes, r = n.length, o = r; e >= o;) (o <<= 1) < 0 && j(16, "" + e);
 
       this.groupSizes = new Uint32Array(o), this.groupSizes.set(n), this.length = o;
 
-      for (var s = r; s < o; s++) {
-        this.groupSizes[s] = 0;
-      }
+      for (var s = r; s < o; s++) this.groupSizes[s] = 0;
     }
 
-    for (var i = this.indexOfGroup(e + 1), a = 0, c = t.length; a < c; a++) {
-      this.tag.insertRule(i, t[a]) && (this.groupSizes[e]++, i++);
-    }
+    for (var i = this.indexOfGroup(e + 1), a = 0, c = t.length; a < c; a++) this.tag.insertRule(i, t[a]) && (this.groupSizes[e]++, i++);
   }, t.clearGroup = function (e) {
     if (e < this.length) {
       var t = this.groupSizes[e],
@@ -35627,17 +35609,13 @@ var T = function () {
           r = n + t;
       this.groupSizes[e] = 0;
 
-      for (var o = n; o < r; o++) {
-        this.tag.deleteRule(n);
-      }
+      for (var o = n; o < r; o++) this.tag.deleteRule(n);
     }
   }, t.getGroup = function (e) {
     var t = "";
     if (e >= this.length || 0 === this.groupSizes[e]) return t;
 
-    for (var n = this.groupSizes[e], r = this.indexOfGroup(e), o = r + n, s = r; s < o; s++) {
-      t += this.tag.getRule(s) + "/*!sc*/\n";
-    }
+    for (var n = this.groupSizes[e], r = this.indexOfGroup(e), o = r + n, s = r; s < o; s++) t += this.tag.getRule(s) + "/*!sc*/\n";
 
     return t;
   }, e;
@@ -35645,30 +35623,26 @@ var T = function () {
     k = new Map(),
     x = new Map(),
     V = 1,
-    B = function B(e) {
+    B = function (e) {
   if (k.has(e)) return k.get(e);
 
-  for (; x.has(V);) {
-    V++;
-  }
+  for (; x.has(V);) V++;
 
   var t = V++;
   return "production" !== "development" && ((0 | t) < 0 || t > 1 << 30) && j(16, "" + t), k.set(e, t), x.set(t, e), t;
 },
-    M = function M(e) {
+    M = function (e) {
   return x.get(e);
 },
-    z = function z(e, t) {
+    z = function (e, t) {
   k.set(e, t), x.set(t, e);
 },
     L = "style[" + A + '][data-styled-version="5.2.1"]',
     G = new RegExp("^" + A + '\\.g(\\d+)\\[id="([\\w\\d-]+)"\\].*?"([^"]*)'),
-    F = function F(e, t, n) {
-  for (var r, o = n.split(","), s = 0, i = o.length; s < i; s++) {
-    (r = o[s]) && e.registerName(t, r);
-  }
+    F = function (e, t, n) {
+  for (var r, o = n.split(","), s = 0, i = o.length; s < i; s++) (r = o[s]) && e.registerName(t, r);
 },
-    Y = function Y(e, t) {
+    Y = function (e, t) {
   for (var n = t.innerHTML.split("/*!sc*/\n"), r = [], o = 0, s = n.length; o < s; o++) {
     var i = n[o].trim();
 
@@ -35683,10 +35657,10 @@ var T = function () {
     }
   }
 },
-    q = function q() {
+    q = function () {
   return "undefined" != typeof __webpack_nonce__ ? __webpack_nonce__ : null;
 },
-    H = function H(e) {
+    H = function (e) {
   var t = document.head,
       n = e || t,
       r = document.createElement("style"),
@@ -35832,7 +35806,7 @@ var T = function () {
   }, e;
 }(),
     K = /(a)(d)/gi,
-    Q = function Q(e) {
+    Q = function (e) {
   return String.fromCharCode(e + (e > 25 ? 39 : 97));
 };
 
@@ -35840,21 +35814,17 @@ function ee(e) {
   var t,
       n = "";
 
-  for (t = Math.abs(e); t > 52; t = t / 52 | 0) {
-    n = Q(t % 52) + n;
-  }
+  for (t = Math.abs(e); t > 52; t = t / 52 | 0) n = Q(t % 52) + n;
 
   return (Q(t % 52) + n).replace(K, "$1-$2");
 }
 
-var te = function te(e, t) {
-  for (var n = t.length; n;) {
-    e = 33 * e ^ t.charCodeAt(--n);
-  }
+var te = function (e, t) {
+  for (var n = t.length; n;) e = 33 * e ^ t.charCodeAt(--n);
 
   return e;
 },
-    ne = function ne(e) {
+    ne = function (e) {
   return te(5381, e);
 };
 
@@ -35961,7 +35931,7 @@ function ce(e) {
   }(function (e) {
     d.push(e);
   }),
-      f = function f(e, r, s) {
+      f = function (e, r, s) {
     return 0 === r && ae.includes(s[n.length]) || s.match(o) ? e : "." + t;
   };
 
@@ -36050,7 +36020,7 @@ var ve = function () {
     ge = /([A-Z])/,
     Se = /([A-Z])/g,
     we = /^ms-/,
-    Ee = function Ee(e) {
+    Ee = function (e) {
   return "-" + e.toLowerCase();
 };
 
@@ -36058,15 +36028,13 @@ function be(e) {
   return ge.test(e) ? e.replace(Se, Ee).replace(we, "-ms-") : e;
 }
 
-var _e = function _e(e) {
+var _e = function (e) {
   return null == e || !1 === e || "" === e;
 };
 
 function Ne(e, n, r, o) {
   if (Array.isArray(e)) {
-    for (var s, i = [], a = 0, c = e.length; a < c; a += 1) {
-      "" !== (s = Ne(e[a], n, r, o)) && (Array.isArray(s) ? i.push.apply(i, s) : i.push(s));
-    }
+    for (var s, i = [], a = 0, c = e.length; a < c; a += 1) "" !== (s = Ne(e[a], n, r, o)) && (Array.isArray(s) ? i.push.apply(i, s) : i.push(s));
 
     return i;
   }
@@ -36086,25 +36054,21 @@ function Ne(e, n, r, o) {
         o,
         s = [];
 
-    for (var i in t) {
-      t.hasOwnProperty(i) && !_e(t[i]) && (S(t[i]) ? s.push.apply(s, e(t[i], i)) : b(t[i]) ? s.push(be(i) + ":", t[i], ";") : s.push(be(i) + ": " + (r = i, null == (o = t[i]) || "boolean" == typeof o || "" === o ? "" : "number" != typeof o || 0 === o || r in _unitless.default ? String(o).trim() : o + "px") + ";"));
-    }
+    for (var i in t) t.hasOwnProperty(i) && !_e(t[i]) && (S(t[i]) ? s.push.apply(s, e(t[i], i)) : b(t[i]) ? s.push(be(i) + ":", t[i], ";") : s.push(be(i) + ": " + (r = i, null == (o = t[i]) || "boolean" == typeof o || "" === o ? "" : "number" != typeof o || 0 === o || r in _unitless.default ? String(o).trim() : o + "px") + ";"));
 
     return n ? [n + " {"].concat(s, ["}"]) : s;
   }(e) : e.toString();
 }
 
 function Ae(e) {
-  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) {
-    n[r - 1] = arguments[r];
-  }
+  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) n[r - 1] = arguments[r];
 
   return b(e) || S(e) ? Ne(g(w, [e].concat(n))) : 0 === n.length && 1 === e.length && "string" == typeof e[0] ? e : Ne(g(e, n));
 }
 
 var Ce = /invalid hook call/i,
     Ie = new Set(),
-    Pe = function Pe(e, t) {
+    Pe = function (e, t) {
   if ("production" !== "development") {
     var n = "The component " + e + (t ? ' with the id of "' + t + '"' : "") + " has been created dynamically.\nYou may see this warning because you've called styled inside another component.\nTo resolve this only create new StyledComponents outside of any render method and function component.";
 
@@ -36115,7 +36079,7 @@ var Ce = /invalid hook call/i,
     }
   }
 },
-    Oe = function Oe(e, t, n) {
+    Oe = function (e, t, n) {
   return void 0 === n && (n = E), e.theme !== n.theme && e.theme || t || n.theme;
 },
     Re = /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~-]+/g,
@@ -36125,7 +36089,7 @@ function je(e) {
   return e.replace(Re, "-").replace(De, "");
 }
 
-var Te = function Te(e) {
+var Te = function (e) {
   return ee(ne(e) >>> 0);
 };
 
@@ -36133,10 +36097,10 @@ function ke(e) {
   return "string" == typeof e && ("production" === "development" || e.charAt(0) === e.charAt(0).toLowerCase());
 }
 
-var xe = function xe(e) {
-  return "function" == typeof e || "object" == _typeof(e) && null !== e && !Array.isArray(e);
+var xe = function (e) {
+  return "function" == typeof e || "object" == typeof e && null !== e && !Array.isArray(e);
 },
-    Ve = function Ve(e) {
+    Ve = function (e) {
   return "__proto__" !== e && "constructor" !== e && "prototype" !== e;
 };
 
@@ -36146,15 +36110,11 @@ function Be(e, t, n) {
 }
 
 function Me(e) {
-  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) {
-    n[r - 1] = arguments[r];
-  }
+  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) n[r - 1] = arguments[r];
 
   for (var o = 0, s = n; o < s.length; o++) {
     var i = s[o];
-    if (xe(i)) for (var a in i) {
-      Ve(a) && Be(e, i[a], a);
-    }
+    if (xe(i)) for (var a in i) Ve(a) && Be(e, i[a], a);
   }
 
   return e;
@@ -36174,10 +36134,10 @@ function Ge(e) {
 
       if (b(e)) {
         var n = e(t);
-        return "production" === "development" || null !== n && !Array.isArray(n) && "object" == _typeof(n) ? n : j(7);
+        return "production" === "development" || null !== n && !Array.isArray(n) && "object" == typeof n ? n : j(7);
       }
 
-      return Array.isArray(e) || "object" != _typeof(e) ? j(8) : t ? v({}, t, {}, e) : e;
+      return Array.isArray(e) || "object" != typeof e ? j(8) : t ? v({}, t, {}, e) : e;
     }(e.theme, t);
   }, [e.theme, t]);
   return e.children ? _react.default.createElement(ze.Provider, {
@@ -36213,7 +36173,7 @@ function Ye(e, t, n) {
   var C,
       I = new se(n, g, o ? e.componentStyle : void 0),
       P = I.isStatic && 0 === c.length,
-      O = function O(e, t) {
+      O = function (e, t) {
     return function (e, t, n, r) {
       var o = e.attrs,
           i = e.componentStyle,
@@ -36236,9 +36196,7 @@ function Ye(e, t, n) {
               s,
               i = e;
 
-          for (t in b(i) && (i = i(r)), i) {
-            r[t] = o[t] = "className" === t ? (n = o[t], s = i[t], n && s ? n + " " + s : n || s) : i[t];
-          }
+          for (t in b(i) && (i = i(r)), i) r[t] = o[t] = "className" === t ? (n = o[t], s = i[t], n && s ? n + " " + s : n || s) : i[t];
         }), [r, o];
       }(Oe(t, (0, _react.useContext)(ze), a) || E, t, o),
           y = f[0],
@@ -36255,9 +36213,7 @@ function Ye(e, t, n) {
           A = g !== t ? v({}, t, {}, g) : t,
           C = {};
 
-      for (var I in A) {
-        "$" !== I[0] && "as" !== I && ("forwardedAs" === I ? C.as = A[I] : (d ? d(I, _isPropValid.default) : !N || (0, _isPropValid.default)(I)) && (C[I] = A[I]));
-      }
+      for (var I in A) "$" !== I[0] && "as" !== I && ("forwardedAs" === I ? C.as = A[I] : (d ? d(I, _isPropValid.default) : !N || (0, _isPropValid.default)(I)) && (C[I] = A[I]));
 
       return t.style && g.style !== t.style && (C.style = v({}, t.style, {}, g.style)), C.className = Array.prototype.concat(c, h, S !== h ? S : null, t.className, g.className).filter(Boolean).join(" "), C.ref = w, (0, _react.createElement)(_, C);
     }(C, e, t, P);
@@ -36272,9 +36228,7 @@ function Ye(e, t, n) {
           o = {},
           s = Object.keys(e);
 
-      for (r = 0; r < s.length; r++) {
-        n = s[r], t.indexOf(n) >= 0 || (o[n] = e[n]);
-      }
+      for (r = 0; r < s.length; r++) n = s[r], t.indexOf(n) >= 0 || (o[n] = e[n]);
 
       return o;
     }(t, ["componentId"]),
@@ -36285,10 +36239,10 @@ function Ye(e, t, n) {
       componentId: s
     }), n);
   }, Object.defineProperty(C, "defaultProps", {
-    get: function get() {
+    get: function () {
       return this._foldedDefaultProps;
     },
-    set: function set(t) {
+    set: function (t) {
       this._foldedDefaultProps = o ? Me({}, e.defaultProps, t) : t;
     }
   }), "production" !== "development" && (Pe(f, g), C.warnTooManyClasses = function (e, t) {
@@ -36314,11 +36268,11 @@ function Ye(e, t, n) {
   }), C;
 }
 
-var qe = function qe(e) {
+var qe = function (e) {
   return function e(t, r, o) {
     if (void 0 === o && (o = E), !(0, _reactIs.isValidElementType)(r)) return j(1, String(r));
 
-    var s = function s() {
+    var s = function () {
       return t(r, o, Ae.apply(void 0, arguments));
     };
 
@@ -36354,9 +36308,7 @@ var He = function () {
 }();
 
 function $e(e) {
-  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), o = 1; o < t; o++) {
-    n[o - 1] = arguments[o];
-  }
+  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), o = 1; o < t; o++) n[o - 1] = arguments[o];
 
   var i = Ae.apply(void 0, [e].concat(n)),
       a = "sc-global-" + Te(JSON.stringify(i)),
@@ -36391,9 +36343,7 @@ function $e(e) {
 function We(e) {
   "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("`keyframes` cannot be used on ReactNative, only on the web. To do animation in ReactNative please use Animated.");
 
-  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) {
-    n[r - 1] = arguments[r];
-  }
+  for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++) n[r - 1] = arguments[r];
 
   var o = Ae.apply(void 0, [e].concat(n)).join(""),
       s = Te(o);
@@ -36435,7 +36385,7 @@ var Ue = function () {
     return j(3);
   }, e;
 }(),
-    Je = function Je(e) {
+    Je = function (e) {
   var t = _react.default.forwardRef(function (t, n) {
     var o = (0, _react.useContext)(ze),
         i = e.defaultProps,
@@ -36448,7 +36398,7 @@ var Ue = function () {
 
   return (0, _hoistNonReactStatics.default)(t, e), t.displayName = "WithTheme(" + _(e) + ")", t;
 },
-    Xe = function Xe() {
+    Xe = function () {
   return (0, _react.useContext)(ze);
 },
     Ze = {
@@ -36475,62 +36425,24 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n \n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  padding: 1rem;\n  background-color: blue;\n  color: white;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  padding: 1rem;\n  width: 80%;\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n \n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Container = _styledComponents.default.div(_templateObject());
-
+const Container = _styledComponents.default.div`
+ 
+`;
 exports.Container = Container;
-
-var Input = _styledComponents.default.input(_templateObject2());
-
+const Input = _styledComponents.default.input`
+  padding: 1rem;
+  width: 80%;
+`;
 exports.Input = Input;
-
-var Button = _styledComponents.default.button(_templateObject3());
-
+const Button = _styledComponents.default.button`
+  padding: 1rem;
+  background-color: blue;
+  color: white;
+`;
 exports.Button = Button;
-
-var Background = _styledComponents.default.img(_templateObject4());
-
+const Background = _styledComponents.default.img`
+ 
+`;
 exports.Background = Background;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/header/index.js":[function(require,module,exports) {
 "use strict";
@@ -36546,37 +36458,33 @@ var _header = require("./styles/header");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function Header(_ref) {
-  var children = _ref.children,
-      restProps = _objectWithoutProperties(_ref, ["children"]);
-
+function Header({
+  children,
+  ...restProps
+}) {
   return /*#__PURE__*/_react.default.createElement(_header.Container, restProps, children);
 }
 
-Header.Background = function HeaderBackground(_ref2) {
-  var children = _ref2.children,
-      restProps = _ref2.restProps;
-
+Header.Background = function HeaderBackground({
+  children,
+  restProps
+}) {
   /*#__PURE__*/
   _react.default.createElement(_header.Background, restProps, " ", children, " ");
 };
 
-Header.Input = function HeaderInput(_ref3) {
-  var children = _ref3.children,
-      restProps = _objectWithoutProperties(_ref3, ["children"]);
-
+Header.Input = function HeaderInput({
+  children,
+  ...restProps
+}) {
   /*#__PURE__*/
   _react.default.createElement(_header.Input, restProps, " ", children, " ");
 };
 
-Header.Button = function FormButton(_ref4) {
-  var children = _ref4.children,
-      restProps = _objectWithoutProperties(_ref4, ["children"]);
-
+Header.Button = function FormButton({
+  children,
+  ...restProps
+}) {
   /*#__PURE__*/
   _react.default.createElement(_header.Button, restProps, " ", children, " ");
 };
@@ -36592,34 +36500,13 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  zoom: 2\n "]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n   margin: 2rem\n "]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var Container = _styledComponents.default.div(_templateObject());
-
+const Container = _styledComponents.default.div`
+   margin: 2rem
+ `;
 exports.Container = Container;
-
-var Input = _styledComponents.default.input(_templateObject2());
-
+const Input = _styledComponents.default.input`
+  zoom: 2
+ `;
 exports.Input = Input;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/form/index.js":[function(require,module,exports) {
 "use strict";
@@ -36635,27 +36522,64 @@ var _form = require("./styles/form");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function Form(_ref) {
-  var children = _ref.children,
-      restProps = _objectWithoutProperties(_ref, ["children"]);
-
+function Form({
+  children,
+  ...restProps
+}) {
   return /*#__PURE__*/_react.default.createElement(_form.Container, restProps, children);
 }
 
-Form.Input = function FormInput(_ref2) {
-  var children = _ref2.children,
-      restProps = _objectWithoutProperties(_ref2, ["children"]);
-
+Form.Input = function FormInput({
+  children,
+  ...restProps
+}) {
   /*#__PURE__*/
   _react.default.createElement(_form.Input, restProps, " ", children, " ");
 };
 },{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/main/index.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"src/components/index.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MainJob;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function MainJob() {
+  const [jobs, setJobs] = (0, _react.useState)([]);
+  const fullTime = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code"; //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
+  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+
+  (0, _react.useEffect)(() => {
+    (async () => {
+      const result = await fetch(fullTime);
+      const data = await result.json();
+      setJobs(data);
+    })();
+  }, []);
+  (0, _react.useEffect)(() => {
+    if (jobs == []) {
+      return null;
+    } else {
+      setJobs(jobs);
+    }
+  }, [jobs]);
+
+  MainJob.Article = function MainJob({ ...restProps
+  }) {
+    /*#__PURE__*/
+    _react.default.createElement(Article, restProps, children);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, "mmmmmm"));
+}
+},{"react":"node_modules/react/index.js"}],"src/components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36739,7 +36663,58 @@ function FormContainer() {
     type: "checkbox"
   })));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/pages/home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/containers/location.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MainJob;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function MainJob() {
+  const [jobs, setJobs] = (0, _react.useState)([]);
+  const fullTime = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code"; //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
+  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+
+  (0, _react.useEffect)(() => {
+    (async () => {
+      const result = await fetch(fullTime);
+      const data = await result.json();
+      setJobs(data);
+    })();
+  }, []);
+  (0, _react.useEffect)(() => {
+    if (jobs == []) {
+      return null;
+    } else {
+      setJobs(jobs);
+    }
+  }, [jobs]);
+
+  MainJob.Article = function MainJob({ ...restProps
+  }) {
+    /*#__PURE__*/
+    _react.default.createElement(Article, restProps, children);
+  };
+
+  const someJobs = jobs.map(job => {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      to: `/Jobdescription/${job.id}`,
+      key: job.id
+    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: job.company_logo
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.company), /*#__PURE__*/_react.default.createElement("p", null, job.title), /*#__PURE__*/_react.default.createElement("button", null, job.type)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.location), /*#__PURE__*/_react.default.createElement("div", null, Date.now()))));
+  });
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, someJobs);
+}
+},{"react":"node_modules/react/index.js"}],"src/pages/home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36753,19 +36728,21 @@ var _header = _interopRequireDefault(require("../containers/header"));
 
 var _form = _interopRequireDefault(require("../containers/form"));
 
+var _location = _interopRequireDefault(require("../containers/location"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Home() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement(_form.default, null));
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement(_form.default, null), /*#__PURE__*/_react.default.createElement(_location.default, null));
 }
-},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js"}],"src/constants/routes.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js","../containers/location":"src/containers/location.js"}],"src/constants/routes.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.HOME = void 0;
-var HOME = '/';
+const HOME = '/';
 exports.HOME = HOME;
 },{}],"src/app.js":[function(require,module,exports) {
 "use strict";
@@ -36805,19 +36782,16 @@ exports.GlobalStyles = void 0;
 
 var _styledComponents = require("styled-components");
 
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    html, body {\n        font-family: 'Helvetica Neue', Helvetica, sans-serif;\n        -webkit-font-smoothing: antialiased;\n        -moz-osx-font-smoothing: antialiased;\n        background-color: rgb(230,230,250);\n        font-size: 16px;\n        margin: 0;\n    }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var GlobalStyles = (0, _styledComponents.createGlobalStyle)(_templateObject());
+const GlobalStyles = (0, _styledComponents.createGlobalStyle)`
+    html, body {
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: antialiased;
+        background-color: rgb(230,230,250);
+        font-size: 16px;
+        margin: 0;
+    }
+`;
 exports.GlobalStyles = GlobalStyles;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
@@ -36861,7 +36835,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62213" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49684" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
