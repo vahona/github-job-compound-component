@@ -6,7 +6,9 @@ const Context = React.createContext();
 
  function ContextProvider({ children }) {
   const [jobs, setJobs] = useState([]);
+  const [jobsLocattion, setJobsLocattion] = useState([]);
   const [Title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [inputValueLocation, setInputValueLocation] = useState("");
 
@@ -17,6 +19,7 @@ const Context = React.createContext();
   let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`;
   //  description=python&&location=sf
   const TitleJob = `location=${Title}`;
+  const LocationJob = `location=${location}`;
 
   useEffect(() => {
     if (Title !== "") {
@@ -31,6 +34,30 @@ const Context = React.createContext();
     })();
   }, [Title]);
 
+
+    useEffect(() => {
+      if (Title !== "") {
+        API_URL = API_URL + LocationJob;
+      }
+
+      (async () => {
+        const result = await fetch(API_URL);
+        const dataLocation = await result.json();
+        setJobs(dataLocation);
+        console.log(dataLocation);
+      })();
+    }, [location]);
+
+
+     const SomeJobByLocation = jobs.filter((works) =>
+       works.location.toLowerCase().includes(inputValueLocation.toLowerCase())
+     );
+
+     useEffect(() => {
+       setJobs(SomeJobByLocation);
+     }, [location, inputValueLocation]);
+
+
   useEffect(() => {
     if (jobs == []) {
       return null;
@@ -40,11 +67,32 @@ const Context = React.createContext();
   }, [jobs]);
 
 
-  return (
-      <Context.Provider value={{ jobs, Title, setTitle, setJobs }}>
-        {children}
-      </Context.Provider>
+    useEffect(() => {
+      if (jobsLocattion == []) {
+        return null;
+      } else {
+        setJobs(jobsLocattion);
+      }
+    }, [jobsLocattion]);
 
+
+  return (
+    <Context.Provider
+      value={{
+        jobs,
+        Title,
+        location,
+        inputValueLocation,
+        setTitle,
+        setJobs,
+        setLocation,
+        setInputValueLocation,
+        jobsLocattion,
+        setJobsLocattion,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 }
 

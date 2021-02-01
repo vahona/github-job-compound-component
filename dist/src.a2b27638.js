@@ -29795,7 +29795,9 @@ function ContextProvider({
   children
 }) {
   const [jobs, setJobs] = (0, _react.useState)([]);
+  const [jobsLocattion, setJobsLocattion] = (0, _react.useState)([]);
   const [Title, setTitle] = (0, _react.useState)("");
+  const [location, setLocation] = (0, _react.useState)("");
   const [inputValue, setInputValue] = (0, _react.useState)("");
   const [inputValueLocation, setInputValueLocation] = (0, _react.useState)(""); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
   //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
@@ -29804,6 +29806,7 @@ function ContextProvider({
   let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`; //  description=python&&location=sf
 
   const TitleJob = `location=${Title}`;
+  const LocationJob = `location=${location}`;
   (0, _react.useEffect)(() => {
     if (Title !== "") {
       API_URL = API_URL + TitleJob;
@@ -29817,18 +29820,47 @@ function ContextProvider({
     })();
   }, [Title]);
   (0, _react.useEffect)(() => {
+    if (Title !== "") {
+      API_URL = API_URL + LocationJob;
+    }
+
+    (async () => {
+      const result = await fetch(API_URL);
+      const dataLocation = await result.json();
+      setJobs(dataLocation);
+      console.log(dataLocation);
+    })();
+  }, [location]);
+  const SomeJobByLocation = jobs.filter(works => works.location.toLowerCase().includes(inputValueLocation.toLowerCase()));
+  (0, _react.useEffect)(() => {
+    setJobs(SomeJobByLocation);
+  }, [location, inputValueLocation]);
+  (0, _react.useEffect)(() => {
     if (jobs == []) {
       return null;
     } else {
       setJobs(jobs);
     }
   }, [jobs]);
+  (0, _react.useEffect)(() => {
+    if (jobsLocattion == []) {
+      return null;
+    } else {
+      setJobs(jobsLocattion);
+    }
+  }, [jobsLocattion]);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
       jobs,
       Title,
+      location,
+      inputValueLocation,
       setTitle,
-      setJobs
+      setJobs,
+      setLocation,
+      setInputValueLocation,
+      jobsLocattion,
+      setJobsLocattion
     }
   }, children);
 }
@@ -36732,19 +36764,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = FormContainer;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _components = require("../components");
 
 var _form = require("../components/form/styles/form");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = require("../Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function FormContainer() {
+  const {
+    jobs,
+    Title,
+    location,
+    inputValueLocation,
+    setTitle,
+    setJobs,
+    setLocation,
+    setInputValueLocation,
+    jobsLocattion,
+    setJobsLocattion
+  } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement(_components.Form, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
     type: "checkbox"
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Location")), /*#__PURE__*/_react.default.createElement(_form.Input, {
-    placeholder: "City, state, zip code, or "
+  }), /*#__PURE__*/_react.default.createElement("label", null, " Full time ")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Location")), /*#__PURE__*/_react.default.createElement(_form.Input, {
+    placeholder: "City, State, zip code or country",
+    type: "text",
+    value: inputValueLocation,
+    onChange: e => setInputValueLocation(e.target.value)
   })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
     type: "checkbox"
   }), /*#__PURE__*/_react.default.createElement("label", null, "New York")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
@@ -36755,7 +36806,7 @@ function FormContainer() {
     type: "checkbox"
   }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
