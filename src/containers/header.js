@@ -6,11 +6,6 @@ import { Button, Input } from '../components/header/styles/header'
 import {Context} from '../Context'
 
 
-
-
-
-
-
 export default function HeaderContainer({children}) {
 
    const {

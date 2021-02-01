@@ -29815,7 +29815,7 @@ function ContextProvider({
       setJobs(data);
       console.log(data);
     })();
-  }, []);
+  }, [Title]);
   (0, _react.useEffect)(() => {
     if (jobs == []) {
       return null;

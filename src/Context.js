@@ -29,7 +29,7 @@ const Context = React.createContext();
       setJobs(data);
       console.log(data);
     })();
-  }, []);
+  }, [Title]);
 
   useEffect(() => {
     if (jobs == []) {
