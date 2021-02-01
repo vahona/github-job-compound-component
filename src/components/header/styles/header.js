@@ -11,8 +11,9 @@ export const Container = styled.form`
 
 export const Input = styled.input`
   padding: 1rem;
-  width: 80%;
+  width: 70%;
   padding-right: 50px;
+  margin-inline-start: 2rem;
 `
 
 
@@ -21,7 +22,7 @@ export const Button = styled.button`
   background-color: blue;
   color: white;
   /* margin-left: -50px; */
-  width: 70px;
+  width: 10%;
   margin-right: 0.5rem;
   margin-top: 0.5rem;
 `;

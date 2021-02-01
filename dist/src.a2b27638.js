@@ -29799,7 +29799,15 @@ function ContextProvider({
   const [Title, setTitle] = (0, _react.useState)("");
   const [location, setLocation] = (0, _react.useState)("");
   const [inputValue, setInputValue] = (0, _react.useState)("");
-  const [inputValueLocation, setInputValueLocation] = (0, _react.useState)(""); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
+  const [inputValueLocation, setInputValueLocation] = (0, _react.useState)("");
+  const [newyorkJobState, setnewyorkJobState] = (0, _react.useState)([]);
+  const [checkedNewyork, setCheckedNweyork] = (0, _react.useState)(false);
+  const [franciscoJobState, setfranciscoJobState] = (0, _react.useState)([]);
+  const [checkedFrancisco, setCheckedFrancisco] = (0, _react.useState)(false);
+  const [BerlinJobState, setBerlinJobState] = (0, _react.useState)([]);
+  const [checkedBerlin, setCheckedBerlin] = (0, _react.useState)(false);
+  const [LondonJobState, setLondonJobState] = (0, _react.useState)([]);
+  const [checkedLondon, setCheckedLondon] = (0, _react.useState)(false); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
   //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
   //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
 
@@ -29827,7 +29835,7 @@ function ContextProvider({
     (async () => {
       const result = await fetch(API_URL);
       const dataLocation = await result.json();
-      setJobs(dataLocation);
+      setJobsLocattion(dataLocation);
       console.log(dataLocation);
     })();
   }, [location]);
@@ -29848,7 +29856,64 @@ function ContextProvider({
     } else {
       setJobs(jobsLocattion);
     }
-  }, [jobsLocattion]);
+  }, [jobsLocattion]); // Filtering by the Location Berlin
+
+  const NewYorkJobs = jobs.filter(job => job.location === "New York");
+
+  function JobsNewYork() {
+    if (!checkedNewyork) {
+      setCheckedNweyork(newyorkJobState);
+      return NewYorkJobs;
+    } else {
+      return jobs;
+    }
+  }
+
+  (0, _react.useEffect)(() => {
+    setJobs(NewYorkJobs);
+  }, ["New York", checkedNewyork]);
+  const FranciscoJobs = jobs.filter(job => job.location === "San Francisco");
+
+  function JobsFrancisco() {
+    if (!checkedFrancisco) {
+      setCheckedFrancisco(FranciscoJobState);
+      return FranciscoJobs;
+    } else {
+      return jobs;
+    }
+  }
+
+  (0, _react.useEffect)(() => {
+    setJobs(FranciscoJobs);
+  }, ["San Francisco", checkedFrancisco]);
+  const BerlinJobs = jobs.filter(job => job.location === "Berlin");
+
+  function JobsBerlin() {
+    if (!checkedFrancisco) {
+      setCheckedBerlin(BerlinJobState);
+      return BerlinJobs;
+    } else {
+      return jobs;
+    }
+  }
+
+  (0, _react.useEffect)(() => {
+    setJobs(BerlinJobs);
+  }, ["Berlin", checkedBerlin]);
+  const LondonJobs = jobs.filter(job => job.location === "London");
+
+  function JobsLondon() {
+    if (!checkedLondon) {
+      setCheckedLondon(LondonJobState);
+      return LondonJobs;
+    } else {
+      return jobs;
+    }
+  }
+
+  (0, _react.useEffect)(() => {
+    setJobs(LondonJobs);
+  }, ["London", checkedLondon]);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
       jobs,
@@ -29860,7 +29925,21 @@ function ContextProvider({
       setLocation,
       setInputValueLocation,
       jobsLocattion,
-      setJobsLocattion
+      setJobsLocattion,
+      newyorkJobState,
+      setnewyorkJobState,
+      JobsNewYork,
+      JobsFrancisco,
+      JobsBerlin,
+      JobsLondon,
+      BerlinJobState,
+      setBerlinJobState,
+      checkedLondon,
+      setCheckedLondon,
+      checkedBerlin,
+      setCheckedBerlin,
+      LondonJobState,
+      setLondonJobState
     }
   }, children);
 }
@@ -36524,8 +36603,9 @@ const Container = _styledComponents.default.form`
 exports.Container = Container;
 const Input = _styledComponents.default.input`
   padding: 1rem;
-  width: 80%;
+  width: 70%;
   padding-right: 50px;
+  margin-inline-start: 2rem;
 `;
 exports.Input = Input;
 const Button = _styledComponents.default.button`
@@ -36533,7 +36613,7 @@ const Button = _styledComponents.default.button`
   background-color: blue;
   color: white;
   /* margin-left: -50px; */
-  width: 70px;
+  width: 10%;
   margin-right: 0.5rem;
   margin-top: 0.5rem;
 `;
@@ -36787,7 +36867,21 @@ function FormContainer() {
     setLocation,
     setInputValueLocation,
     jobsLocattion,
-    setJobsLocattion
+    setJobsLocattion,
+    newyorkJobState,
+    setnewyorkJobState,
+    JobsNewYork,
+    BerlinJobState,
+    setBerlinJobState,
+    checkedLondon,
+    setCheckedLondon,
+    checkedBerlin,
+    setCheckedBerlin,
+    LondonJobState,
+    setLondonJobState,
+    JobsFrancisco,
+    JobsBerlin,
+    JobsLondon
   } = (0, _react.useContext)(_Context.Context);
   return /*#__PURE__*/_react.default.createElement(_components.Form, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
     type: "checkbox"
@@ -36797,13 +36891,17 @@ function FormContainer() {
     value: inputValueLocation,
     onChange: e => setInputValueLocation(e.target.value)
   })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
+    type: "checkbox",
+    onClick: e => JobsNewYork()
   }), /*#__PURE__*/_react.default.createElement("label", null, "New York")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
+    type: "checkbox",
+    onClick: e => JobsFrancisco()
   }), /*#__PURE__*/_react.default.createElement("label", null, "San Francisco")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
+    type: "checkbox",
+    onClick: e => JobsBerlin()
   }), /*#__PURE__*/_react.default.createElement("label", null, "Berlin")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
+    type: "checkbox",
+    onClick: e => JobsLondon()
   }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
 }
 },{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
@@ -37024,7 +37122,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57882" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63543" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
