@@ -4,5 +4,5 @@ import styled from "styled-components";
    margin: 2rem
  `;
  export const Input = styled.input`
-  zoom: 2
+  zoom: 1.5
  `

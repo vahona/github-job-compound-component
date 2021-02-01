@@ -17,15 +17,19 @@ export default function FormContainer() {
       </div>
       <div>
         <Input type="checkbox" />
+        <label>New York</label>
       </div>
       <div>
         <Input type="checkbox" />
+        <label>San Francisco</label>
       </div>
       <div>
         <Input type="checkbox" />
+        <label>Berlin</label>
       </div>
       <div>
         <Input type="checkbox" />
+        <label>London</label>
       </div>
     </Form>
   );

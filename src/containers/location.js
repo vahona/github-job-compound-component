@@ -1,21 +1,45 @@
-import React, { useState, useEffect, createContext, Children } from "react";
+import React, { useState, useEffect, children } from "react";
+
+import {
+  Container,
+  Image,
+  Article,
+  SubContainer,
+  Location,
+  Dates
+} from "../components/main/styles/main";
+
+ export const Context = React.createContext();
+
+export default function MainJob({children}) {
 
 
 
-export default function MainJob() {
   const [jobs, setJobs] = useState([]);
+  const [Title, setTitle] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [inputValueLocation, setInputValueLocation] = useState("");
 
-  const fullTime =
-    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code";
+ 
   //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
   //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
   //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
 
+    let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`;
+      //  description=python&&location=sf
+       const TitleJob = `location=${Title}`;
+
   useEffect(() => {
+
+if (Title !== "") {
+  API_URL = API_URL + TitleJob;
+}
+
     (async () => {
-      const result = await fetch(fullTime);
+      const result = await fetch(API_URL);
       const data = await result.json();
       setJobs(data);
+      console.log(data)
     })();
   }, []);
 
@@ -29,32 +53,35 @@ export default function MainJob() {
 
   MainJob.Article = function MainJob({ ...restProps }) {
     <Article {...restProps}>{children}</Article>;
-  };
+  }
 
 
    const someJobs = jobs.map((job) => {
      return (
-       <div to={`/Jobdescription/${job.id}`} key={job.id}>
-         <div>
-           <img src={job.company_logo} />
+       <Container to={`/Jobdescription/${job.id}`} key={job.id}>
+         <Article>
+           <Image src={job.company_logo} />
            <div>
              <p>{job.company}</p>
              <p>{job.title}</p>
              <button>{job.type}</button>
            </div>
 
-           <div>
-             <p>{job.location}</p>
-             <div>{Date.now()}</div>
-           </div>
-         </div>
-       </div>
+           <SubContainer>
+             <Location>{job.location}</Location>
+             <Dates>{job.created_at}</Dates>
+           </SubContainer>
+         </Article>
+       </Container>
      );
    });
 
   return (
     <>
+      <Context.Provider value = {{jobs, Title, setTitle, setJobs}}>{children}</Context.Provider>
       {someJobs}
     </>
   );
 }
+
+ export { MainJob };
