@@ -29772,7 +29772,67 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ContextProvider = ContextProvider;
+exports.Context = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Context = _react.default.createContext();
+
+exports.Context = Context;
+
+function ContextProvider({
+  children
+}) {
+  const [jobs, setJobs] = (0, _react.useState)([]);
+  const [Title, setTitle] = (0, _react.useState)("");
+  const [inputValue, setInputValue] = (0, _react.useState)("");
+  const [inputValueLocation, setInputValueLocation] = (0, _react.useState)(""); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
+  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+
+  let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`; //  description=python&&location=sf
+
+  const TitleJob = `location=${Title}`;
+  (0, _react.useEffect)(() => {
+    if (Title !== "") {
+      API_URL = API_URL + TitleJob;
+    }
+
+    (async () => {
+      const result = await fetch(API_URL);
+      const data = await result.json();
+      setJobs(data);
+      console.log(data);
+    })();
+  }, []);
+  (0, _react.useEffect)(() => {
+    if (jobs == []) {
+      return null;
+    } else {
+      setJobs(jobs);
+    }
+  }, [jobs]);
+  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
+    value: {
+      jobs,
+      Title,
+      setTitle,
+      setJobs
+    }
+  }, children);
+}
+},{"react":"node_modules/react/index.js"}],"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36426,6 +36486,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const Container = _styledComponents.default.form`
+  background-image: url('../images/backgroundImg.png')
  
 `;
 exports.Container = Container;
@@ -36616,7 +36677,85 @@ var _form = _interopRequireDefault(require("./form"));
 var _main = _interopRequireDefault(require("./main"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./header":"src/components/header/index.js","./form":"src/components/form/index.js","./main":"src/components/main/index.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
+},{"./header":"src/components/header/index.js","./form":"src/components/form/index.js","./main":"src/components/main/index.js"}],"src/containers/header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = HeaderContainer;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _components = require("../components");
+
+var _header = require("../components/header/styles/header");
+
+var _Context = require("../Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function HeaderContainer({
+  children
+}) {
+  const {
+    jobs,
+    Title,
+    setTitle,
+    description,
+    isfull,
+    setIsfull,
+    setDescription
+  } = (0, _react.useContext)(_Context.Context);
+
+  function searchLocation(e) {
+    e.preventDefault();
+    setTitle(e.target.Title.value);
+  }
+
+  console.log(_Context.Context);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_components.Header, {
+    onSubmit: searchLocation
+  }, /*#__PURE__*/_react.default.createElement(_header.Input, {
+    placeholder: "Title, companies, expertise or benefits",
+    type: "text",
+    id: "Title"
+  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search")));
+}
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js","../Context":"src/Context.js"}],"src/containers/form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = FormContainer;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _components = require("../components");
+
+var _form = require("../components/form/styles/form");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormContainer() {
+  return /*#__PURE__*/_react.default.createElement(_components.Form, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Location")), /*#__PURE__*/_react.default.createElement(_form.Input, {
+    placeholder: "City, state, zip code, or "
+  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "New York")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "San Francisco")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "Berlin")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
+    type: "checkbox"
+  }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
+}
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36670,10 +36809,11 @@ exports.Dates = Dates;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MainJob = exports.default = MainJob;
-exports.Context = void 0;
+exports.default = MainJob;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _Context = require("../Context");
 
 var _main = require("../components/main/styles/main");
 
@@ -36681,89 +36821,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const Context = _react.default.createContext();
-
-exports.Context = Context;
-
-function MainJob({
-  children
-}) {
-  const [jobs, setJobs] = (0, _react.useState)([]);
-  const [Title, setTitle] = (0, _react.useState)("");
-  const [inputValue, setInputValue] = (0, _react.useState)("");
-  const [inputValueLocation, setInputValueLocation] = (0, _react.useState)(""); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
-  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-
-  let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`; //  description=python&&location=sf
-
-  const TitleJob = `location=${Title}`;
-  (0, _react.useEffect)(() => {
-    if (Title !== "") {
-      API_URL = API_URL + TitleJob;
-    }
-
-    (async () => {
-      const result = await fetch(API_URL);
-      const data = await result.json();
-      setJobs(data);
-      console.log(data);
-    })();
-  }, []);
-  (0, _react.useEffect)(() => {
-    if (jobs == []) {
-      return null;
-    } else {
-      setJobs(jobs);
-    }
-  }, [jobs]);
-
-  MainJob.Article = function MainJob({ ...restProps
-  }) {
-    /*#__PURE__*/
-    _react.default.createElement(_main.Article, restProps, children);
-  };
-
-  const someJobs = jobs.map(job => {
-    return /*#__PURE__*/_react.default.createElement(_main.Container, {
-      to: `/Jobdescription/${job.id}`,
-      key: job.id
-    }, /*#__PURE__*/_react.default.createElement(_main.Article, null, /*#__PURE__*/_react.default.createElement(_main.Image, {
-      src: job.company_logo
-    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.company), /*#__PURE__*/_react.default.createElement("p", null, job.title), /*#__PURE__*/_react.default.createElement("button", null, job.type)), /*#__PURE__*/_react.default.createElement(_main.SubContainer, null, /*#__PURE__*/_react.default.createElement(_main.Location, null, job.location), /*#__PURE__*/_react.default.createElement(_main.Dates, null, job.created_at))));
-  });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Context.Provider, {
-    value: {
-      jobs,
-      Title,
-      setTitle,
-      setJobs
-    }
-  }, children), someJobs);
-}
-},{"react":"node_modules/react/index.js","../components/main/styles/main":"src/components/main/styles/main.js"}],"src/containers/header.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = HeaderContainer;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _components = require("../components");
-
-var _header = require("../components/header/styles/header");
-
-var _location = require("./location");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function HeaderContainer({
-  children
-}) {
+function MainJob() {
   const {
     jobs,
     Title,
@@ -36772,51 +36830,18 @@ function HeaderContainer({
     isfull,
     setIsfull,
     setDescription
-  } = (0, _react.useContext)(_location.Context);
-
-  function searchLocation(e) {
-    e.preventDefault();
-    setTitle(e.target.Title.value);
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_components.Header, {
-    onSubmit: searchLocation
-  }, /*#__PURE__*/_react.default.createElement(_header.Input, {
-    placeholder: "Title, companies, expertise or benefits"
-  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search"));
+  } = (0, _react.useContext)(_Context.Context);
+  const someJobs = jobs.map(job => {
+    return /*#__PURE__*/_react.default.createElement(_main.Container, {
+      to: `/Jobdescription/${job.id}`,
+      key: job.id
+    }, /*#__PURE__*/_react.default.createElement(_main.Article, null, /*#__PURE__*/_react.default.createElement(_main.Image, {
+      src: job.company_logo
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.company), /*#__PURE__*/_react.default.createElement("p", null, job.title), /*#__PURE__*/_react.default.createElement("button", null, job.type)), /*#__PURE__*/_react.default.createElement(_main.SubContainer, null, /*#__PURE__*/_react.default.createElement(_main.Location, null, " ", job.location, " "), /*#__PURE__*/_react.default.createElement(_main.Dates, null, job.created_at))));
+  });
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, someJobs);
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js","./location":"src/containers/location.js"}],"src/containers/form.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = FormContainer;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _components = require("../components");
-
-var _form = require("../components/form/styles/form");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function FormContainer() {
-  return /*#__PURE__*/_react.default.createElement(_components.Form, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Location")), /*#__PURE__*/_react.default.createElement(_form.Input, {
-    placeholder: "City, state, zip code, or "
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "New York")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "San Francisco")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "Berlin")), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_form.Input, {
-    type: "checkbox"
-  }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
-}
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js"}],"src/pages/home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"src/Context.js","../components/main/styles/main":"src/components/main/styles/main.js"}],"src/pages/home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36893,6 +36918,15 @@ const GlobalStyles = (0, _styledComponents.createGlobalStyle)`
         font-size: 16px;
         margin: 0;
     }
+
+    body {
+        padding: 0;
+        margin: 0;
+        max-width: 1440px;
+        max-height: 2724px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
 `;
 exports.GlobalStyles = GlobalStyles;
 },{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/index.js":[function(require,module,exports) {
@@ -36902,14 +36936,16 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
+var _Context = require("./Context");
+
 var _app = require("./app");
 
 var _globalStyle = require("./global-style");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_globalStyle.GlobalStyles, null), /*#__PURE__*/_react.default.createElement(_app.App, null)), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./app":"src/app.js","./global-style":"src/global-style.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Context.ContextProvider, null, /*#__PURE__*/_react.default.createElement(_globalStyle.GlobalStyles, null), /*#__PURE__*/_react.default.createElement(_app.App, null)), document.getElementById("root"));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./Context":"src/Context.js","./app":"src/app.js","./global-style":"src/global-style.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36937,7 +36973,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57882" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

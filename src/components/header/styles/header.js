@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 
 export const Container = styled.form`
+  background-image: url('../images/backgroundImg.png')
  
 `
 
