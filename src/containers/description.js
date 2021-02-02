@@ -30,11 +30,11 @@ import { Context } from "../Context";
 export default function DescriptionContainer() {
   const { jobs, setJobs } = useContext(Context);
   const { id } = useParams();
-  const history = useHistory();
+
 
   const job = jobs.find((job) => job.id === id);
 
-  console.log("ooo", job);
+  console.log("ooo", id);
 
   return (
 

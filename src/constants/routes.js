@@ -1,2 +1,2 @@
 export const HOME ='/'
-export const DESCRIPTION = "/description";
+export const DESCRIPTION = "/description/:id";

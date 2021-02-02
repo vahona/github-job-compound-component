@@ -36930,7 +36930,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.DESCRIPTION = exports.HOME = void 0;
 const HOME = '/';
 exports.HOME = HOME;
-const DESCRIPTION = "/description";
+const DESCRIPTION = "/description/:id";
 exports.DESCRIPTION = DESCRIPTION;
 },{}],"src/containers/location.js":[function(require,module,exports) {
 "use strict";
@@ -37054,9 +37054,8 @@ function DescriptionContainer() {
   const {
     id
   } = (0, _reactRouterDom.useParams)();
-  const history = (0, _reactRouterDom.useHistory)();
   const job = jobs.find(job => job.id === id);
-  console.log("ooo", job);
+  console.log("ooo", id);
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h1", null, "Github ", /*#__PURE__*/_react.default.createElement("span", null, "jobs")), /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("i", {
     onClick: () => history.goBack()
   }), "Back to search"), /*#__PURE__*/_react.default.createElement("p", null, "How to apply"), /*#__PURE__*/_react.default.createElement("div", null, " ", "Please Email a copy of your resume and online portfolio to", " ", /*#__PURE__*/_react.default.createElement("p", null, " wes@Kosisto.com & cc"), /*#__PURE__*/_react.default.createElement("p", null, "eric@kosisto.com"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job?.company), /*#__PURE__*/_react.default.createElement("button", null, job?.type)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
