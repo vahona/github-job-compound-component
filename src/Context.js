@@ -22,9 +22,8 @@ const Context = React.createContext();
      const [LondonJobState, setLondonJobState] = useState([]);
      const [checkedLondon, setCheckedLondon] = useState(false);
 
-   //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
-   //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-   //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+
+   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york"; 
 
    let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`;
    //  description=python&&location=sf
@@ -105,7 +104,7 @@ const Context = React.createContext();
 
    function JobsFrancisco() {
      if (!checkedFrancisco) {
-       setCheckedFrancisco(FranciscoJobState);
+       setCheckedFrancisco(franciscoJobState);
        return FranciscoJobs;
      } else {
        return jobs;

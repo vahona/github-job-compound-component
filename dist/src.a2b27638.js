@@ -29807,10 +29807,8 @@ function ContextProvider({
   const [BerlinJobState, setBerlinJobState] = (0, _react.useState)([]);
   const [checkedBerlin, setCheckedBerlin] = (0, _react.useState)(false);
   const [LondonJobState, setLondonJobState] = (0, _react.useState)([]);
-  const [checkedLondon, setCheckedLondon] = (0, _react.useState)(false); //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
-  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-
+  const [checkedLondon, setCheckedLondon] = (0, _react.useState)(false);
+  const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
   let API_URL = `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?`; //  description=python&&location=sf
 
   const TitleJob = `location=${Title}`;
@@ -29876,7 +29874,7 @@ function ContextProvider({
 
   function JobsFrancisco() {
     if (!checkedFrancisco) {
-      setCheckedFrancisco(FranciscoJobState);
+      setCheckedFrancisco(franciscoJobState);
       return FranciscoJobs;
     } else {
       return jobs;
@@ -36714,50 +36712,87 @@ Form.Input = function FormInput({
   /*#__PURE__*/
   _react.default.createElement(_form.Input, restProps, " ", children, " ");
 };
-},{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/main/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./styles/form":"src/components/form/styles/form.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = MainJob;
+exports.Dates = exports.Location = exports.SubContainer = exports.Article = exports.Image = exports.Container = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const Container = _styledComponents.default.article`
+  background-color: white;
+  margin: 2rem;
+  display: flex;
+  position: relative;
+`;
+exports.Container = Container;
+const Image = _styledComponents.default.img`
+  width: 20%;
+  margin-right: 1rem;
+`;
+exports.Image = Image;
+const Article = _styledComponents.default.article`
+  margin: 2rem;
+  display: flex;
+`;
+exports.Article = Article;
+const SubContainer = _styledComponents.default.div`
+  color: gray;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right : 1rem;
+  font-size: 12px
 
-function MainJob() {
-  const [jobs, setJobs] = (0, _react.useState)([]);
-  const fullTime = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code"; //   const NewYork = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
-  //   const Timung = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
-  //   const Locatio_API = "https://jobs.github.com/positions.json?description=python&full_time=true&location=sf";
+`;
+exports.SubContainer = SubContainer;
+const Location = _styledComponents.default.p`
+ margin-right: 1rem;
 
-  (0, _react.useEffect)(() => {
-    (async () => {
-      const result = await fetch(fullTime);
-      const data = await result.json();
-      setJobs(data);
-    })();
-  }, []);
-  (0, _react.useEffect)(() => {
-    if (jobs == []) {
-      return null;
-    } else {
-      setJobs(jobs);
-    }
-  }, [jobs]);
+`;
+exports.Location = Location;
+const Dates = _styledComponents.default.div`
+ margin-top: 1rem
+`;
+exports.Dates = Dates;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/components/main/index.js":[function(require,module,exports) {
+"use strict";
 
-  MainJob.Article = function MainJob({ ...restProps
-  }) {
-    /*#__PURE__*/
-    _react.default.createElement(Article, restProps, children);
-  };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Main;
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, "mmmmmm"));
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _main = require("./styles/main");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Main({
+  children,
+  ...restProps
+}) {
+  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, restProps, children);
 }
-},{"react":"node_modules/react/index.js"}],"src/components/index.js":[function(require,module,exports) {
+
+Main.Article = function MainArticle({
+  children,
+  ...restProps
+}) {
+  /*#__PURE__*/
+  _react.default.createElement(_main.Article, restProps, children);
+}; // Main.Image = function MainImage({src, ...restProps }) {
+//   <Image {...restProps} src={``} />
+// };
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./styles/main":"src/components/main/styles/main.js"}],"src/components/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36858,27 +36893,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function FormContainer() {
   const {
-    jobs,
-    Title,
-    location,
     inputValueLocation,
-    setTitle,
-    setJobs,
-    setLocation,
     setInputValueLocation,
-    jobsLocattion,
-    setJobsLocattion,
-    newyorkJobState,
-    setnewyorkJobState,
     JobsNewYork,
-    BerlinJobState,
-    setBerlinJobState,
-    checkedLondon,
-    setCheckedLondon,
-    checkedBerlin,
-    setCheckedBerlin,
-    LondonJobState,
-    setLondonJobState,
     JobsFrancisco,
     JobsBerlin,
     JobsLondon
@@ -36904,55 +36921,7 @@ function FormContainer() {
     onClick: e => JobsLondon()
   }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/components/main/styles/main.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Dates = exports.Location = exports.SubContainer = exports.Article = exports.Image = exports.Container = void 0;
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const Container = _styledComponents.default.article`
-  background-color: white;
-  margin: 2rem;
-  display: flex;
-  position: relative;
-`;
-exports.Container = Container;
-const Image = _styledComponents.default.img`
-  width: 20%;
-  margin-right: 1rem;
-`;
-exports.Image = Image;
-const Article = _styledComponents.default.article`
-  margin: 2rem;
-  display: flex;
-`;
-exports.Article = Article;
-const SubContainer = _styledComponents.default.div`
-  color: gray;
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  right : 1rem;
-  font-size: 12px
-
-`;
-exports.SubContainer = SubContainer;
-const Location = _styledComponents.default.p`
- margin-right: 1rem;
-
-`;
-exports.Location = Location;
-const Dates = _styledComponents.default.div`
- margin-top: 1rem
-`;
-exports.Dates = Dates;
-},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/containers/location.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/containers/location.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37122,7 +37091,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63543" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51303" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
