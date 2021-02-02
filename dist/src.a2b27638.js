@@ -36724,7 +36724,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const Container = _styledComponents.default.article`
+const Container = _styledComponents.default.section`
   background-color: white;
   margin: 2rem;
   display: flex;
@@ -36931,6 +36931,8 @@ exports.default = MainJob;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _Context = require("../Context");
 
 var _main = require("../components/main/styles/main");
@@ -36939,6 +36941,12 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+//  const LinkJob = styled(Link)`
+//    text-decoration: none;
+//    color: black;
+//    font-family: Roboto;
+//    font-size: 13px;
+//  `;
 function MainJob() {
   const {
     jobs,
@@ -36950,16 +36958,16 @@ function MainJob() {
     setDescription
   } = (0, _react.useContext)(_Context.Context);
   const someJobs = jobs.map(job => {
-    return /*#__PURE__*/_react.default.createElement(_main.Container, {
+    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
       to: `/Jobdescription/${job.id}`,
       key: job.id
-    }, /*#__PURE__*/_react.default.createElement(_main.Article, null, /*#__PURE__*/_react.default.createElement(_main.Image, {
+    }, /*#__PURE__*/_react.default.createElement(_main.Container, null, /*#__PURE__*/_react.default.createElement(_main.Article, null, /*#__PURE__*/_react.default.createElement(_main.Image, {
       src: job.company_logo
-    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.company), /*#__PURE__*/_react.default.createElement("p", null, job.title), /*#__PURE__*/_react.default.createElement("button", null, job.type)), /*#__PURE__*/_react.default.createElement(_main.SubContainer, null, /*#__PURE__*/_react.default.createElement(_main.Location, null, " ", job.location, " "), /*#__PURE__*/_react.default.createElement(_main.Dates, null, job.created_at))));
+    }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job.company), /*#__PURE__*/_react.default.createElement("p", null, job.title), /*#__PURE__*/_react.default.createElement("button", null, job.type)), /*#__PURE__*/_react.default.createElement(_main.SubContainer, null, /*#__PURE__*/_react.default.createElement(_main.Location, null, " ", job.location, " "), /*#__PURE__*/_react.default.createElement(_main.Dates, null, job.created_at)))));
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, someJobs);
 }
-},{"react":"node_modules/react/index.js","../Context":"src/Context.js","../components/main/styles/main":"src/components/main/styles/main.js"}],"src/pages/home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../Context":"src/Context.js","../components/main/styles/main":"src/components/main/styles/main.js"}],"src/pages/home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37091,7 +37099,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51303" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52490" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

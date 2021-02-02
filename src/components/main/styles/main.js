@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.article`
+export const Container = styled.section`
   background-color: white;
   margin: 2rem;
   display: flex;
   position: relative;
 `
+
+
 
 export const Image = styled.img`
   width: 20%;
