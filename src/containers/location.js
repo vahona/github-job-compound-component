@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
+import styled from "styled-components";
+
 
 import {Context} from '../Context'
 
@@ -16,12 +18,12 @@ import {
 import { DESCRIPTION } from "../constants/routes";
 
 
-//  const LinkJob = styled(Link)`
-//    text-decoration: none;
-//    color: black;
-//    font-family: Roboto;
-//    font-size: 13px;
-//  `;
+ const LinkJob = styled(Link)`
+   text-decoration: none;
+   color: black;
+   font-family: Roboto;
+   font-size: 13px;
+ `;
 
 export default function MainJob() {
     const {
@@ -39,7 +41,7 @@ export default function MainJob() {
 
     const someJobs = jobs.map((job) => {
       return (
-        <Link to={`/DESCRIPTION/${job.id}`} key={job.id}>
+        <LinkJob to={`/DESCRIPTION/${job.id}`} key={job.id}>
           <Container>
             <Article>
               <Image src={job.company_logo} />
@@ -55,7 +57,7 @@ export default function MainJob() {
               </SubContainer>
             </Article>
           </Container>
-        </Link>
+        </LinkJob>
       );
     });
 
