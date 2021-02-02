@@ -4,6 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 import { Context } from "../Context";
+
+import { AiOutlineArrowLeft } from "react-icons/Ai";
 // import { AiOutlineArrowLeft } from "react-icons/Ai";
 import {
   Logo,
@@ -30,6 +32,7 @@ import {
 export default function DescriptionContainer() {
   const { jobs, setJobs } = useContext(Context);
   const { id } = useParams();
+   const history = useHistory();
 
 
   const job = jobs.find((job) => job.id === id);
@@ -43,7 +46,7 @@ export default function DescriptionContainer() {
           Github <Span>jobs</Span>
         </Title>
         <SubTitle>
-          <i onClick={() => history.goBack()} />
+          <AiOutlineArrowLeft onClick={() => history.goBack()} />
           Back to search
         </SubTitle>
         <Application>How to apply</Application>
