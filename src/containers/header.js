@@ -5,6 +5,9 @@ import { Button, Input, Form } from '../components/header/styles/header'
 
 import {Context} from '../Context'
 
+import styled from "styled-components";
+
+
 
 export default function HeaderContainer({children}) {
 
@@ -28,16 +31,16 @@ export default function HeaderContainer({children}) {
 
    console.log(Context);
     return (
-      
-          <Header onSubmit={searchLocation}>
-            <Input
-              placeholder="Title, companies, expertise or benefits"
-              type="text"
-              id="Title"
-            />
-            <Button>Search</Button>
-          </Header>
-      
+      <div>
+        <Header onSubmit={searchLocation}>
+          <Input
+            placeholder="Title, companies, expertise or benefits"
+            type="text"
+            id="Title"
+          />
+          <Button>Search</Button>
+        </Header>
+      </div>
     );
 }
 

@@ -6,7 +6,7 @@ export const Container = styled.section`
   display: flex;
   position: relative;
   @media (min-width: 1000px) {
-  margin-inline-start: 5rem;
+    margin-inline-start: 5rem;
   }
 `
 

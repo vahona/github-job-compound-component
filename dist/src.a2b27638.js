@@ -36735,7 +36735,7 @@ const Container = _styledComponents.default.section`
   display: flex;
   position: relative;
   @media (min-width: 1000px) {
-  margin-inline-start: 5rem;
+    margin-inline-start: 5rem;
   }
 `;
 exports.Container = Container;
@@ -36848,6 +36848,10 @@ var _header = require("../components/header/styles/header");
 
 var _Context = require("../Context");
 
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -36871,15 +36875,15 @@ function HeaderContainer({
   }
 
   console.log(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement(_components.Header, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_components.Header, {
     onSubmit: searchLocation
   }, /*#__PURE__*/_react.default.createElement(_header.Input, {
     placeholder: "Title, companies, expertise or benefits",
     type: "text",
     id: "Title"
-  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search"));
+  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search")));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js","../Context":"src/Context.js"}],"src/containers/form.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js","../Context":"src/Context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/containers/form.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
