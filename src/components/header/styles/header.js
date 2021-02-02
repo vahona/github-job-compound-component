@@ -5,9 +5,13 @@ import styled from "styled-components";
 
 
 export const Container = styled.form`
-  background-image: url('../images/backgroundImg.png')
- 
-`
+  background-image: url("../images/backgroundImg.png");
+`;
+
+
+export const Title = styled.h1``
+
+export const Form = styled.form``;
 
 export const Input = styled.input`
   padding: 1rem;
@@ -27,7 +31,7 @@ export const Button = styled.button`
   margin-top: 0.5rem;
 `;
 
-export const Form = styled.form``
+
 
 
 export const Background = styled.img`

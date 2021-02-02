@@ -36588,17 +36588,20 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Background = exports.Form = exports.Button = exports.Input = exports.Container = void 0;
+exports.Background = exports.Button = exports.Input = exports.Form = exports.Title = exports.Container = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const Container = _styledComponents.default.form`
-  background-image: url('../images/backgroundImg.png')
- 
+  background-image: url("../images/backgroundImg.png");
 `;
 exports.Container = Container;
+const Title = _styledComponents.default.h1``;
+exports.Title = Title;
+const Form = _styledComponents.default.form``;
+exports.Form = Form;
 const Input = _styledComponents.default.input`
   padding: 1rem;
   width: 70%;
@@ -36616,8 +36619,6 @@ const Button = _styledComponents.default.button`
   margin-top: 0.5rem;
 `;
 exports.Button = Button;
-const Form = _styledComponents.default.form``;
-exports.Form = Form;
 const Background = _styledComponents.default.img`
  
 `;
@@ -36641,7 +36642,10 @@ function Header({
   ...restProps
 }) {
   return /*#__PURE__*/_react.default.createElement(_header.Container, restProps, children);
-}
+} // Header.Title = function HeaderTitle({ children, restProps }) {
+//   <Title {...restProps}> {children} </Title>;
+// };
+
 
 Header.Background = function HeaderBackground({
   children,
@@ -36863,13 +36867,13 @@ function HeaderContainer({
   }
 
   console.log(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_components.Header, {
+  return /*#__PURE__*/_react.default.createElement(_components.Header, {
     onSubmit: searchLocation
   }, /*#__PURE__*/_react.default.createElement(_header.Input, {
     placeholder: "Title, companies, expertise or benefits",
     type: "text",
     id: "Title"
-  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search")));
+  }), /*#__PURE__*/_react.default.createElement(_header.Button, null, "Search"));
 }
 },{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/header/styles/header":"src/components/header/styles/header.js","../Context":"src/Context.js"}],"src/containers/form.js":[function(require,module,exports) {
 "use strict";
@@ -53877,7 +53881,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52490" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60194" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

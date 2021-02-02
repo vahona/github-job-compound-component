@@ -1,10 +1,15 @@
 import React from 'react'
 
-import { Container, Input, Button, Background, Form } from "./styles/header";
+import { Container, Input, Button, Background, Form, Title } from "./styles/header";
 
 export default function Header({children, ...restProps}) {
     return <Container {...restProps}>{children}</Container>
 }
+
+
+// Header.Title = function HeaderTitle({ children, restProps }) {
+//   <Title {...restProps}> {children} </Title>;
+// };
 
 
 Header.Background = function HeaderBackground({children, restProps}) {
