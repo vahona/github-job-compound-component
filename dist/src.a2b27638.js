@@ -37002,7 +37002,121 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Home() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement(_form.default, null), /*#__PURE__*/_react.default.createElement(_location.default, null));
 }
-},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js","../containers/location":"src/containers/location.js"}],"src/containers/description.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js","../containers/location":"src/containers/location.js"}],"src/components/description/styles/description.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SpanMail = exports.Span = exports.SubTitle = exports.Title = exports.MoreInfo = exports.Descriptions = exports.Company = exports.Button = exports.Information = exports.Contact = exports.Text = exports.TitleJob = exports.Mail = exports.Application = exports.Dates = exports.DateLocation = exports.JobList = exports.Logo = exports.Container = void 0;
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Container = _styledComponents.default.div`
+  display: flex;
+  margin-top: 1rem;
+`;
+exports.Container = Container;
+const Logo = _styledComponents.default.img`
+  width: 100%;
+  height: 50%;
+  margin: 1rem;
+  margin-top: 3rem;
+`;
+exports.Logo = Logo;
+const JobList = _styledComponents.default.div`
+  display: grid;
+  grid-template-columns: 20% 80%;
+`;
+exports.JobList = JobList;
+const DateLocation = _styledComponents.default.div`
+  color: gray;
+`;
+exports.DateLocation = DateLocation;
+const Dates = _styledComponents.default.p`
+  margin: 1rem;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.06px;
+`;
+exports.Dates = Dates;
+const Application = _styledComponents.default.p`
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: gray;
+`;
+exports.Application = Application;
+const Mail = _styledComponents.default.p`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+`;
+exports.Mail = Mail;
+const TitleJob = _styledComponents.default.p`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.09px;
+`;
+exports.TitleJob = TitleJob;
+const Text = _styledComponents.default.p`
+  margin: 1rem;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+`;
+exports.Text = Text;
+const Contact = _styledComponents.default.div`
+  font-family: Poppins;
+  margin-inline-start: 2rem;
+`;
+exports.Contact = Contact;
+const Information = _styledComponents.default.div`
+  font-family: Roboto;
+`;
+exports.Information = Information;
+const Button = _styledComponents.default.button`
+  margin-left: 1rem;
+`;
+exports.Button = Button;
+const Company = _styledComponents.default.p`
+  margin: 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28.13px;
+  margin-inline-start: 2rem;
+`;
+exports.Company = Company;
+const Descriptions = _styledComponents.default.div`
+  display: grid;
+  grid-template-columns: 20% auto;
+`;
+exports.Descriptions = Descriptions;
+const MoreInfo = _styledComponents.default.div`
+  margin: 2rem;
+`;
+exports.MoreInfo = MoreInfo;
+const Title = _styledComponents.default.h1`
+  font-size: 16px;
+`;
+exports.Title = Title;
+const SubTitle = _styledComponents.default.h1`
+  color: blue;
+  font-size: 16px;
+`;
+exports.SubTitle = SubTitle;
+const Span = _styledComponents.default.span`
+  color: gray;
+`;
+exports.Span = Span;
+const SpanMail = _styledComponents.default.span`
+  color: blue;
+`;
+exports.SpanMail = SpanMail;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"src/containers/description.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37018,6 +37132,8 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Context = require("../Context");
 
+var _description = require("../components/description/styles/description");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -37025,27 +37141,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // import { AiOutlineArrowLeft } from "react-icons/Ai";
-// import {
-//   Logo,
-//   JobList,
-//   DateLocation,
-//   Dates,
-//   Text,
-//   Container,
-//   Button,
-//   Company,
-//   Description,
-//   MoreInfo,
-//   Title,
-//   Span,
-//   SubTitle,
-//   SpanMail,
-//   Contact,
-//   Information,
-//   TitleJob,
-//   Application,
-//   Mail,
-// } from "./Style";
 function DescriptionContainer() {
   const {
     jobs,
@@ -37056,13 +37151,13 @@ function DescriptionContainer() {
   } = (0, _reactRouterDom.useParams)();
   const job = jobs.find(job => job.id === id);
   console.log("ooo", id);
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h1", null, "Github ", /*#__PURE__*/_react.default.createElement("span", null, "jobs")), /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("i", {
+  return /*#__PURE__*/_react.default.createElement(_description.Descriptions, null, /*#__PURE__*/_react.default.createElement(_description.Contact, null, /*#__PURE__*/_react.default.createElement(_description.Title, null, "Github ", /*#__PURE__*/_react.default.createElement(_description.Span, null, "jobs")), /*#__PURE__*/_react.default.createElement(_description.SubTitle, null, /*#__PURE__*/_react.default.createElement("i", {
     onClick: () => history.goBack()
-  }), "Back to search"), /*#__PURE__*/_react.default.createElement("p", null, "How to apply"), /*#__PURE__*/_react.default.createElement("div", null, " ", "Please Email a copy of your resume and online portfolio to", " ", /*#__PURE__*/_react.default.createElement("p", null, " wes@Kosisto.com & cc"), /*#__PURE__*/_react.default.createElement("p", null, "eric@kosisto.com"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job?.company), /*#__PURE__*/_react.default.createElement("button", null, job?.type)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+  }), "Back to search"), /*#__PURE__*/_react.default.createElement(_description.Application, null, "How to apply"), /*#__PURE__*/_react.default.createElement(_description.Mail, null, " ", "Please Email a copy of your resume and online portfolio to", " ", /*#__PURE__*/_react.default.createElement(_description.SpanMail, null, " wes@Kosisto.com & cc"), /*#__PURE__*/_react.default.createElement(_description.SpanMail, null, "eric@kosisto.com"))), /*#__PURE__*/_react.default.createElement(_description.Information, null, /*#__PURE__*/_react.default.createElement(_description.Container, null, /*#__PURE__*/_react.default.createElement(_description.Company, null, job?.company), /*#__PURE__*/_react.default.createElement(_description.Button, null, job?.type)), /*#__PURE__*/_react.default.createElement(_description.JobList, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_description.Logo, {
     src: job?.company_logo
-  })), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("span", null, Date.now())), /*#__PURE__*/_react.default.createElement("h2", null, job?.title)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job?.location)))), /*#__PURE__*/_react.default.createElement("p", null, job?.description.replace(/<[^>]+>/g, ""))));
+  })), /*#__PURE__*/_react.default.createElement(_description.MoreInfo, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_description.DateLocation, null, /*#__PURE__*/_react.default.createElement(_description.Dates, null, job?.created_at)), /*#__PURE__*/_react.default.createElement(_description.TitleJob, null, job?.title)), /*#__PURE__*/_react.default.createElement(_description.DateLocation, null, /*#__PURE__*/_react.default.createElement("p", null, job?.location)))), /*#__PURE__*/_react.default.createElement(_description.Text, null, job?.description.replace(/<[^>]+>/g, ""))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../Context":"src/Context.js"}],"src/pages/description.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../Context":"src/Context.js","../components/description/styles/description":"src/components/description/styles/description.js"}],"src/pages/description.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
