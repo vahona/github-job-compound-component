@@ -36921,7 +36921,18 @@ function FormContainer() {
     onClick: e => JobsLondon()
   }), /*#__PURE__*/_react.default.createElement("label", null, "London")));
 }
-},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/containers/location.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../components":"src/components/index.js","../components/form/styles/form":"src/components/form/styles/form.js","../Context":"src/Context.js"}],"src/constants/routes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DESCRIPTION = exports.HOME = void 0;
+const HOME = '/';
+exports.HOME = HOME;
+const DESCRIPTION = "/description";
+exports.DESCRIPTION = DESCRIPTION;
+},{}],"src/containers/location.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36936,6 +36947,8 @@ var _reactRouterDom = require("react-router-dom");
 var _Context = require("../Context");
 
 var _main = require("../components/main/styles/main");
+
+var _routes = require("../constants/routes");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -36956,10 +36969,11 @@ function MainJob() {
     isfull,
     setIsfull,
     setDescription
-  } = (0, _react.useContext)(_Context.Context);
+  } = (0, _react.useContext)(_Context.Context); // {`/DescriptionContainer/${job.id}`}
+
   const someJobs = jobs.map(job => {
     return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: `/Jobdescription/${job.id}`,
+      to: `/DESCRIPTION/${job.id}`,
       key: job.id
     }, /*#__PURE__*/_react.default.createElement(_main.Container, null, /*#__PURE__*/_react.default.createElement(_main.Article, null, /*#__PURE__*/_react.default.createElement(_main.Image, {
       src: job.company_logo
@@ -36967,7 +36981,7 @@ function MainJob() {
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, someJobs);
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../Context":"src/Context.js","../components/main/styles/main":"src/components/main/styles/main.js"}],"src/pages/home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../Context":"src/Context.js","../components/main/styles/main":"src/components/main/styles/main.js","../constants/routes":"src/constants/routes.js"}],"src/pages/home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36988,16 +37002,85 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Home() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement(_form.default, null), /*#__PURE__*/_react.default.createElement(_location.default, null));
 }
-},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js","../containers/location":"src/containers/location.js"}],"src/constants/routes.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../containers/header":"src/containers/header.js","../containers/form":"src/containers/form.js","../containers/location":"src/containers/location.js"}],"src/containers/description.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.HOME = void 0;
-const HOME = '/';
-exports.HOME = HOME;
-},{}],"src/app.js":[function(require,module,exports) {
+exports.default = DescriptionContainer;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Context = require("../Context");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// import { AiOutlineArrowLeft } from "react-icons/Ai";
+// import {
+//   Logo,
+//   JobList,
+//   DateLocation,
+//   Dates,
+//   Text,
+//   Container,
+//   Button,
+//   Company,
+//   Description,
+//   MoreInfo,
+//   Title,
+//   Span,
+//   SubTitle,
+//   SpanMail,
+//   Contact,
+//   Information,
+//   TitleJob,
+//   Application,
+//   Mail,
+// } from "./Style";
+function DescriptionContainer() {
+  const {
+    jobs,
+    setJobs
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    id
+  } = (0, _reactRouterDom.useParams)();
+  const history = (0, _reactRouterDom.useHistory)();
+  const job = jobs.find(job => job.id === id);
+  console.log("ooo", job);
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h1", null, "Github ", /*#__PURE__*/_react.default.createElement("span", null, "jobs")), /*#__PURE__*/_react.default.createElement("h2", null, /*#__PURE__*/_react.default.createElement("i", {
+    onClick: () => history.goBack()
+  }), "Back to search"), /*#__PURE__*/_react.default.createElement("p", null, "How to apply"), /*#__PURE__*/_react.default.createElement("div", null, " ", "Please Email a copy of your resume and online portfolio to", " ", /*#__PURE__*/_react.default.createElement("p", null, " wes@Kosisto.com & cc"), /*#__PURE__*/_react.default.createElement("p", null, "eric@kosisto.com"))), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job?.company), /*#__PURE__*/_react.default.createElement("button", null, job?.type)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: job?.company_logo
+  })), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("span", null, Date.now())), /*#__PURE__*/_react.default.createElement("h2", null, job?.title)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, job?.location)))), /*#__PURE__*/_react.default.createElement("p", null, job?.description.replace(/<[^>]+>/g, ""))));
+}
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../Context":"src/Context.js"}],"src/pages/description.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Description;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _description = _interopRequireDefault(require("../containers/description"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Description() {
+  return /*#__PURE__*/_react.default.createElement(_description.default, null);
+}
+},{"react":"node_modules/react/index.js","../containers/description":"src/containers/description.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37011,6 +37094,8 @@ var _reactRouterDom = require("react-router-dom");
 
 var _home = _interopRequireDefault(require("./pages/home"));
 
+var _description = _interopRequireDefault(require("./pages/description"));
+
 var ROUTES = _interopRequireWildcard(require("./constants/routes"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -37021,11 +37106,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function App() {
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: ROUTES.DESCRIPTION
+  }, /*#__PURE__*/_react.default.createElement(_description.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: ROUTES.HOME,
     exact: true
   }, /*#__PURE__*/_react.default.createElement(_home.default, null))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/home":"src/pages/home.js","./constants/routes":"src/constants/routes.js"}],"src/global-style.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./pages/home":"src/pages/home.js","./pages/description":"src/pages/description.js","./constants/routes":"src/constants/routes.js"}],"src/global-style.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

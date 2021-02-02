@@ -4,82 +4,88 @@ import { useParams, useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 import { Context } from "../Context";
-import { AiOutlineArrowLeft } from "react-icons/Ai";
-import {
-  Logo,
-  JobList,
-  DateLocation,
-  Dates,
-  Text,
-  Container,
-  Button,
-  Company,
-  Description,
-  MoreInfo,
-  Title,
-  Span,
-  SubTitle,
-  SpanMail,
-  Contact,
-  Information,
-  TitleJob,
-  Application,
-  Mail,
-} from "./Style";
+// import { AiOutlineArrowLeft } from "react-icons/Ai";
+// import {
+//   Logo,
+//   JobList,
+//   DateLocation,
+//   Dates,
+//   Text,
+//   Container,
+//   Button,
+//   Company,
+//   Description,
+//   MoreInfo,
+//   Title,
+//   Span,
+//   SubTitle,
+//   SpanMail,
+//   Contact,
+//   Information,
+//   TitleJob,
+//   Application,
+//   Mail,
+// } from "./Style";
 
-export default function Jobdescription() {
+export default function DescriptionContainer() {
   const { jobs, setJobs } = useContext(Context);
   const { id } = useParams();
   const history = useHistory();
 
   const job = jobs.find((job) => job.id === id);
 
-  console.log(job);
+  console.log("ooo", job);
 
   return (
-    <Description>
-      <Contact>
-        <Title>
-          Github <Span>jobs</Span>
-        </Title>
-        <SubTitle>
-          <AiOutlineArrowLeft onClick={() => history.goBack()} />
+
+    
+    <section>
+      <article>
+        <h1>
+          Github <span>jobs</span>
+        </h1>
+        <h2>
+          <i onClick={() => history.goBack()} />
           Back to search
-        </SubTitle>
-        <Application>How to apply</Application>
-        <Mail>
+        </h2>
+        <p>How to apply</p>
+        <div>
           {" "}
           Please Email a copy of your resume and online portfolio to{" "}
-          <SpanMail> wes@Kosisto.com & cc</SpanMail>
-          <SpanMail>eric@kosisto.com</SpanMail>
-        </Mail>
-      </Contact>
-      <Information>
-        <Container>
-          <Company>{job?.company}</Company>
-          <Button>{job?.type}</Button>
-        </Container>
-        <JobList>
+          <p> wes@Kosisto.com & cc</p>
+          <p>eric@kosisto.com</p>
+        </div>
+      </article>
+      <article>
+        <div>
+          <p>{job?.company}</p>
+          <button>{job?.type}</button>
+        </div>
+        <div>
           <div>
-            <Logo src={job?.company_logo} />
+            <img src={job?.company_logo} />
           </div>
 
-          <MoreInfo>
+          <article>
             <div>
-              <DateLocation>
-                <Dates>{Date.now()}</Dates>
-              </DateLocation>
-              <TitleJob>{job?.title}</TitleJob>
+              <p>
+                <span>{Date.now()}</span>
+              </p>
+              <h2>{job?.title}</h2>
             </div>
 
-            <DateLocation>
+            <div>
               <p>{job?.location}</p>
-            </DateLocation>
-          </MoreInfo>
-        </JobList>
+            </div>
+          </article>
+        </div>
 
-        <Text>{job?.description.replace(/<[^>]+>/g, "")}</Text>
-      </Information>
-    </Description>
-  );
+        <p>{job?.description.replace(/<[^>]+>/g, "")}</p>
+      </article>
+    </section>
+  )
+
+ 
 }
+
+

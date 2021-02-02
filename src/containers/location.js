@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { Link, useParams } from "react-router-dom";
 
+
 import {Context} from '../Context'
 
 import {
@@ -12,6 +13,7 @@ import {
   Location,
   Dates,
 } from "../components/main/styles/main";
+import { DESCRIPTION } from "../constants/routes";
 
 
 //  const LinkJob = styled(Link)`
@@ -33,9 +35,11 @@ export default function MainJob() {
     } = useContext(Context);
 
 
+    // {`/DescriptionContainer/${job.id}`}
+
     const someJobs = jobs.map((job) => {
       return (
-        <Link to={`/Jobdescription/${job.id}`} key={job.id}>
+        <Link to={`/DESCRIPTION/${job.id}`} key={job.id}>
           <Container>
             <Article>
               <Image src={job.company_logo} />
